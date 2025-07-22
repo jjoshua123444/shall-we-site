@@ -68,6 +68,12 @@ const activities = {
       { timeout: 10000 }
     );
   }
+
+  div.addEventListener('click', () => {
+    localStorage.setItem('selectedActivity', item);
+    window.location.href = 'invite.html';
+  });
+  
   
   findBtn.addEventListener('click', handleFindClick);
   
