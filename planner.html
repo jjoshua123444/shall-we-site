@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planner | Shall We?</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fafafa;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .planner {
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select, button {
+      padding: 0.7rem 1.2rem;
+      margin-top: 1rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      background-color: white;
+      transition: all 0.2s ease;
+    }
+
+    select:focus, button:hover {
+      outline: none;
+      border-color: #aaa;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: #333;
+      color: white;
+      margin-left: 1rem;
+    }
+
+    .results {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .activity-card {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1rem;
+      background: #fff;
+      text-align: left;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-2px);
+    }
+
+    #loading {
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: #888;
+    }
+
+    .alert {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      padding: 1rem;
+      border-radius: 8px;
+      color: #8a6d3b;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .planner {
+        padding: 1rem;
+      }
+
+      select, button {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+
+      button {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="planner">
+    <h1>Let’s find something to do!</h1>
+    <p>Select your budget and let us find nearby fun 🎯</p>
+
+    <div class="form-group">
+      <label for="budget">Choose your budget:</label>
+      <select id="budget">
+        <option value="$">$ - Budget Friendly</option>
+        <option value="$$">$$ - Affordable</option>
+        <option value="$$$">$$$ - Moderate</option>
+        <option value="$$$$">$$$$ - Premium</option>
+        <option value="$$$$$">$$$$$ - Luxury</option>
+      </select>
+
+      <button id="findBtn">Find Something Fun</button>
+    </div>
+
+    <div id="loading" style="display: none;">🔎 Finding ideas near you...</div>
+    <div id="results" class="results"></div>
+  </section>
+
+  <script src="planner.js" defer></script>
+</body>
+</html>

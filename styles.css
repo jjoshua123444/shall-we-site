@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .splash {
+    background: linear-gradient(120deg, #1e1e2f, #2b2d42);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+  }
+  
+  .splash.fade-out {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .emoji {
+    display: inline-block;
+    margin-left: 0.3em;
+    font-size: 1.2em; /* slightly larger for emphasis */
+    vertical-align: middle;
+  }
+  
+  
+  .next-section {
+    background: #f4f4f4;
+    color: #2b2d42;
+    position: relative;
+    z-index: 1;
+  }
+  
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+    min-height: 4.5rem;
+    transition: opacity 0.5s ease;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+  
+  .enter-button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .enter-button:hover {
+    background-color: #fff;
+    color: #1e1e2f;
+  }
+  
+  .activity-card {
+    background: #f9f9f9;
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .activity-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .alert {
+    background: #fff3cd;
+    padding: 1em;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    color: #856404;
+    margin-top: 1em;
+  }
+  
+
+
+  .begin-button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border: 2px solid #1e1e2f;
+    background: transparent;
+    color: #1e1e2f;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .begin-button:hover {
+    background-color: #1e1e2f;
+    color: #fff;
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    .enter-button,
+    .begin-button {
+      width: 80%;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+  

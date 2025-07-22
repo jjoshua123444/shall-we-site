@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shall We ?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      min-height: 5rem;
+      transition: opacity 0.5s ease;
+    }
+    p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      opacity: 0.85;
+      margin-bottom: 3rem;
+    }
+    button#enterBtn {
+      background: white;
+      color: #000DFF;
+      border: none;
+      border-radius: 9999px;
+      padding: 1rem 3rem;
+      font-weight: 600;
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 13, 255, 0.3);
+      transition: background 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    button#enterBtn:hover {
+      background: #000DFF;
+      color: white;
+      box-shadow: 0 6px 20px rgba(107, 115, 255, 0.6);
+    }
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      pointer-events: none;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.75rem;
+      }
+      button#enterBtn {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="rotating-text">Shall We ?</h1>
+  <p>A moment, a question, a journey — just one step away.</p>
+  <button id="enterBtn">Enter</button>
+
+  <script src="main.js" defer></script>
+
+</body>
+</html>
