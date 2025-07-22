@@ -24,16 +24,23 @@ const activities = {
   function generateActivityCards(suggestions, lat, lon) {
     resultsEl.innerHTML = ''; // Clear previous
   
-    suggestions.forEach(activity => {
-      const card = document.createElement('div');
-      card.className = 'activity-card';
-      card.innerHTML = `
-        <strong>${activity}</strong>
-        <br>
-        <small>Near (${lat.toFixed(2)}, ${lon.toFixed(2)})</small>
-      `;
-      resultsEl.appendChild(card);
-    });
+    selected.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'activity-card';
+        div.innerHTML = `<strong>${item}</strong><br><small>Near (${latitude.toFixed(2)}, ${longitude.toFixed(2)})</small>`;
+      
+        // 👇 Add click event to go to invite.html with activity in query param
+        div.addEventListener('click', () => {
+          // Option 1: Use query parameter (recommended for links)
+          const encoded = encodeURIComponent(item);
+          window.location.href = `invite.html?activity=${encoded}`;
+      
+          // Option 2 (optional): Also store in localStorage if you want
+          localStorage.setItem('selectedActivity', item);
+        });
+      
+        results.appendChild(div);
+      });
   }
   
   function handleLocationSuccess(position) {
