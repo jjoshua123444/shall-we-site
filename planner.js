@@ -1,5 +1,3 @@
-// planner.js
-
 const activities = {
     "$": ["Visit a local park", "Go on a hike", "Window shopping downtown", "Have a picnic", "Go geocaching"],
     "$$": ["Grab coffee at a local cafe", "Try a food truck", "Visit a museum", "Bowling", "Thrift shopping"],
@@ -8,79 +6,48 @@ const activities = {
     "$$$$$": ["Spa day", "Helicopter tour", "Luxury dining", "Private boat rental", "Day trip getaway"]
   };
   
-  const findBtn = document.getElementById('findBtn');
-  const budgetInput = document.getElementById('budget');
-  const resultsEl = document.getElementById('results');
-  const loadingEl = document.getElementById('loading'); // optional loading indicator
+  document.addEventListener('DOMContentLoaded', () => {
+    const findBtn = document.getElementById('findBtn');
+    const results = document.getElementById('results');
+    const loading = document.getElementById('loading');
   
-  function showLoading(show) {
-    if (loadingEl) loadingEl.style.display = show ? 'block' : 'none';
-  }
+    findBtn.addEventListener('click', () => {
+      const budget = document.getElementById('budget').value;
+      results.innerHTML = '';
+      loading.style.display = 'block';
   
-  function showAlert(message) {
-    resultsEl.innerHTML = `<div class="alert">${message}</div>`;
-  }
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
   
-  function generateActivityCards(suggestions, lat, lon) {
-    resultsEl.innerHTML = ''; // Clear previous
+          const suggestions = activities[budget];
+          const selected = suggestions.sort(() => 0.5 - Math.random()).slice(0, 3);
   
-    selected.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'activity-card';
-        div.innerHTML = `<strong>${item}</strong><br><small>Near (${latitude.toFixed(2)}, ${longitude.toFixed(2)})</small>`;
-      
-        // 👇 Add click event to go to invite.html with activity in query param
-        div.addEventListener('click', () => {
-          // Option 1: Use query parameter (recommended for links)
-          const encoded = encodeURIComponent(item);
-          window.location.href = `invite.html?activity=${encoded}`;
-      
-          // Option 2 (optional): Also store in localStorage if you want
-          localStorage.setItem('selectedActivity', item);
+          loading.style.display = 'none';
+  
+          selected.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'activity-card';
+            div.innerHTML = `<strong>${item}</strong><br><small>Near (${latitude.toFixed(2)}, ${longitude.toFixed(2)})</small>`;
+  
+            // Navigate to invite.html with selected activity
+            div.addEventListener('click', () => {
+              const encoded = encodeURIComponent(item);
+              localStorage.setItem('selectedActivity', item); // optional fallback
+              window.location.href = `invite.html?activity=${encoded}`;
+            });
+  
+            results.appendChild(div);
+          });
+  
+        }, () => {
+          loading.style.display = 'none';
+          alert('We need your location to suggest local activities.');
         });
-      
-        results.appendChild(div);
-      });
-  }
-  
-  function handleLocationSuccess(position) {
-    const budget = budgetInput.value;
-    const { latitude, longitude } = position.coords;
-  
-    const suggestions = activities[budget];
-    const selected = suggestions.sort(() => 0.5 - Math.random()).slice(0, 3);
-  
-    generateActivityCards(selected, latitude, longitude);
-    showLoading(false);
-  }
-  
-  function handleLocationError(error) {
-    showLoading(false);
-    showAlert('⚠️ Location access denied. Please enable location services.');
-  }
-  
-  function handleFindClick() {
-    resultsEl.innerHTML = '';
-    showLoading(true);
-  
-    if (!navigator.geolocation) {
-      showLoading(false);
-      showAlert('⚠️ Geolocation not supported by your browser.');
-      return;
-    }
-  
-    navigator.geolocation.getCurrentPosition(
-      handleLocationSuccess,
-      handleLocationError,
-      { timeout: 10000 }
-    );
-  }
-
-  div.addEventListener('click', () => {
-    localStorage.setItem('selectedActivity', item);
-    window.location.href = 'invite.html';
+      } else {
+        loading.style.display = 'none';
+        alert('Geolocation is not supported in your browser.');
+      }
+    });
   });
-  
-  
-  findBtn.addEventListener('click', handleFindClick);
   

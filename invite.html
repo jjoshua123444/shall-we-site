@@ -32,7 +32,10 @@
   </div>
 
   <script>
-    const activity = localStorage.getItem('selectedActivity');
+    // Try to read from URL query param first
+    const params = new URLSearchParams(window.location.search);
+    const activity = params.get('activity') || localStorage.getItem('selectedActivity');
+
     document.getElementById('selectedActivity').textContent = activity || "No activity selected";
 
     const link = `${window.location.origin}/invite.html?activity=${encodeURIComponent(activity)}`;
